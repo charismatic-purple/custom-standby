@@ -7,8 +7,8 @@ final class StandByStudioTests: XCTestCase {
         XCTAssertEqual(Set(identifiers).count, identifiers.count)
     }
 
-    func testCatalogShipsWithThreeWidgets() {
-        XCTAssertEqual(StandByWidgetDescriptor.catalog.count, 3)
+    func testCatalogShipsWithFourWidgets() {
+        XCTAssertEqual(StandByWidgetDescriptor.catalog.count, 4)
     }
 
     func testCatalogDescriptionsAreComplete() {

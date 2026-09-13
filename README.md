@@ -1,7 +1,8 @@
 # StandBy Studio
 
-StandBy Studio is a small SwiftUI app with three WidgetKit widgets designed for iPhone StandBy:
+StandBy Studio is a small SwiftUI app with four WidgetKit widgets designed for iPhone StandBy:
 
+- **Now Playing** — artwork and track details from the iPhone's Music app.
 - **Message** — a configurable headline, note, SF Symbol, and color theme.
 - **Countdown** — a configurable event, date, and color theme.
 - **Clock & Date** — a large, distance-friendly time and date display.
@@ -24,6 +25,8 @@ open StandByStudio.xcodeproj
 
 In Xcode, select the `StandByStudio` target, choose your development team, and run on an iPhone or simulator. If Xcode asks, use a unique bundle identifier for both the app and widget extension.
 
+Launch the app and tap **Allow Music Access** before adding Now Playing. Apple requires this consent before the app can read Music Library and Music app playback metadata.
+
 ## Add a widget to StandBy
 
 1. Install and launch StandBy Studio once.
@@ -35,6 +38,14 @@ In Xcode, select the `StandByStudio` target, choose your development team, and r
 ## Important platform limits
 
 Apple doesn't provide a third-party API to replace StandBy, create a full-screen custom StandBy clock face, force StandBy to launch, or programmatically place a widget. Apps provide standard WidgetKit widgets; the user chooses where to place them. Widget refresh timing is also managed by iOS.
+
+### Now Playing and HomePod
+
+Now Playing reads `MPMusicPlayerController.systemMusicPlayer`, which represents the Music app on the iPhone. It works for Apple Music playing on that iPhone and can work when the iPhone is the AirPlay source for a HomePod.
+
+Playback started independently by a HomePod isn't exposed as a live account-wide session through public MusicKit, HomeKit, or Apple Music API endpoints. The Apple Music API offers recently played history, but that isn't proof that a track is still playing, so this app deliberately doesn't present it as live HomePod status.
+
+Widgets are snapshots, not continuously running mini-apps. Now Playing asks for a refresh every five minutes and refreshes when the companion app becomes active, but iOS ultimately controls the schedule. Track changes may therefore appear with a delay.
 
 ## Project layout
 

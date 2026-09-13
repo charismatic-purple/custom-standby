@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
+    @StateObject private var musicAccess = MusicAccessModel()
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 28) {
                     hero
+                    MusicAccessCard(model: musicAccess)
                     widgetCatalog
                     setupGuide
                     compatibilityNote
@@ -16,6 +20,14 @@ struct ContentView: View {
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("StandBy Studio")
             .navigationBarTitleDisplayMode(.inline)
+            .task {
+                musicAccess.refresh()
+            }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    musicAccess.refresh()
+                }
+            }
         }
     }
 
@@ -28,7 +40,7 @@ struct ContentView: View {
             Text("Make StandBy yours")
                 .font(.system(.largeTitle, design: .rounded, weight: .bold))
 
-            Text("Three focused widgets designed to stay readable across the room, adapt to Night Mode, and feel at home on iOS.")
+            Text("Four focused widgets designed to stay readable across the room, adapt to Night Mode, and feel at home on iOS.")
                 .font(.body)
                 .foregroundStyle(.secondary)
         }

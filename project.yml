@@ -26,6 +26,7 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: StandBy Studio
+        NSAppleMusicUsageDescription: StandBy Studio uses Music Library access to show the song currently playing in the Music app on your widgets.
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
@@ -56,6 +57,7 @@ targets:
       properties:
         CFBundleDisplayName: StandBy Studio Widgets
         CFBundlePackageType: XPC!
+        NSAppleMusicUsageDescription: StandBy Studio uses Music Library access to show the song currently playing in the Music app.
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:

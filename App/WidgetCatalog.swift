@@ -9,6 +9,13 @@ struct StandByWidgetDescriptor: Identifiable, Equatable {
 
     static let catalog: [StandByWidgetDescriptor] = [
         .init(
+            id: "now-playing",
+            name: "Now Playing",
+            summary: "Artwork and track details from the Music app.",
+            symbol: "music.note",
+            colors: [.pink, .purple]
+        ),
+        .init(
             id: "message",
             name: "Message",
             summary: "A personal headline, note, or mantra.",
